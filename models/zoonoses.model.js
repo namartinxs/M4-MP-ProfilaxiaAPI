@@ -11,7 +11,7 @@ class zoonose {
     );
 
     if (!pesquisa) {
-      return null;
+     throw new Error("Zoonose não presente na lista");
     }
 
     return {
