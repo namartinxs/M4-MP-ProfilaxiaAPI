@@ -1,8 +1,13 @@
 import TratamentoChikungunya from "../models/tratamentoChikungunya.model.js";
 const listarTratamento = (req, res) => {
-  const chamada = new TratamentoChikungunya();
-  const tratamento = chamada.listarTratamento();
-  res.json(tratamento);
+  try{
+    const chamada = new TratamentoChikungunya();
+    const tratamento = chamada.listarTratamento();
+    res.json(tratamento);
+  } catch (error) {
+    res.status(400).json({ erro: error.message });
+  }
+  
 };
 
 export default listarTratamento;
