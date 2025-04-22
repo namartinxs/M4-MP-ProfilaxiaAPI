@@ -1,8 +1,8 @@
 import express from "express";
 
 //IMPORTA AS ROTAS
-import profilaxiaRaivaRoute from "./routes/profilaxiaRaiva.Route.js";
-import zoonosesRoute from "./routes/zoonoses.Routes.js";
+import profilaxiaRaivaRoute from "./routes/profilaxiaRaiva.routes.js";
+import zoonosesRoute from "./routes/zoonoses.routes.js";
 import prevencaoLeptoRoute from "./routes/prevencaoLepto.routes.js";
 import tratamentoChikungunyaRoute from "./routes/tratamentoChikungunya.routes.js";
 
