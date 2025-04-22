@@ -12,9 +12,9 @@ class ProfilaxiaRaiva {
 
   definirConduta() {
     if (this.animal === tipoAnimal.cao_gato && !this.observacao) {
-        return {
-            erro: "O campo observação é obrigatório quando o animal é um cão ou gato."
-        };
+      return {
+        erro: "O campo observação é obrigatório quando o animal é um cão ou gato.",
+      };
     }
 
     if (this.tipo_exposição === tipoExposição.indireto) {
@@ -57,9 +57,9 @@ class ProfilaxiaRaiva {
       }
     }
 
-    return {
-      erro: "Não foi possível determinar a conduta. Verifique os dados enviados.",
-    };
+    throw new error(
+      "Não foi possível determinar a conduta. Verifique os dados enviados."
+    );
   }
 }
 
