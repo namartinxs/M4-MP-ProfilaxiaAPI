@@ -57,7 +57,7 @@ class ProfilaxiaRaiva {
       }
     }
 
-    throw new error(
+    throw new Error(
       "Não foi possível determinar a conduta. Verifique os dados enviados."
     );
   }
