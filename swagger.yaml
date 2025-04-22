@@ -1,0 +1,193 @@
+openapi: 3.0.0
+info:
+  title: API de Profilaxia e Tratamento de Zoonoses
+  description: API para controle e prevenção de zoonoses, com ênfase em profilaxia, diagnóstico e tratamento.
+  version: "1.0.0"
+
+servers:
+  - url: 'http://localhost:3000'
+
+paths:
+  /zoonoses/listagemZoonose/{nome}:
+    get:
+      summary: "Busca informações sobre uma zoonose específica"
+      description: "Retorna informações detalhadas sobre uma zoonose pelo nome."
+      parameters:
+        - name: nome
+          in: path
+          description: "Nome da zoonose a ser pesquisada"
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Zoonose encontrada com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nome:
+                    type: string
+                  sintomas:
+                    type: string
+                  transmissor:
+                    type: string
+                  periodo_de_incubacao:
+                    type: string
+        404:
+          description: "Zoonose não encontrada"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Zoonose não presente na lista"
+  /tratamento/chikungunya:
+    get:
+      summary: "Obtém as recomendações de tratamento para Chikungunya"
+      description: "Retorna informações sobre o tratamento para Chikungunya, incluindo fases e medicamentos."
+      responses:
+        200:
+          description: "Tratamento para Chikungunya retornado com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  importante:
+                    type: array
+                    items:
+                      type: string
+                  fase_aguda:
+                    type: array
+                    items:
+                      type: string
+                  fase_subaguda:
+                    type: array
+                    items:
+                      type: string
+        404:
+          description: "Dados não encontrados"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Erro ao processar o tratamento"
+  /profilaxiaraiva/avaliarAcidenteRaiva/{animal}:
+    get:
+      summary: "Avaliar a conduta para um acidente com base no tipo de animal e exposição"
+      description: |
+        Este endpoint avalia qual a conduta de profilaxia para um acidente com base no tipo de animal e no tipo de exposição.
+        - Se o tipo de animal for 'cão' ou 'gato' e não houver observação(null), retorna um erro.
+        - Se o tipo de exposição for 'indireto', as condutas podem variar entre soro e vacina ou outra conduta específica.
+        - Se o animal for silvestre, a conduta será 'soro e vacina'.
+        - Se o animal for de interesse econômico, a conduta será 'avaliar acidente'.
+        - Se o animal for 'cão' ou 'gato' com sinais de raiva, ou não passível de observação a conduta será 'avaliar acidente'.
+      parameters:
+        - name: animal
+          in: path
+          required: true
+          description: "Tipo de animal envolvido no acidente (Ex: cão, gato, morcego, silvestre, etc.)"
+          schema:
+            type: string
+            enum:
+              - cao_gato
+              - morcego
+              - silvestre
+              - domestico_de_interesse_economico
+        - name: tipo_exposicao
+          in: query
+          required: true
+          description: "Tipo de exposição (Ex: direta, indireta)"
+          schema:
+            type: string
+            enum:
+              - direta
+              - indireta
+        - name: observacao
+          in: query
+          required: false
+          description: "Observação sobre o acidente, aplicável para cães e gatos (Ex: passível_de_observacao, com_sinais_de_raiva)"
+          schema:
+            type: string
+            enum:
+              - passivel_de_observacao
+              - com_sinais_de_raiva
+              - nao_passivel_de_observacao
+      responses:
+        200:
+          description: "Conduta determinada com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conduta:
+                    type: string
+                    description: "Conduta recomendada para o acidente"
+                    example: "Soro e vacina"
+        400:
+          description: "Erro ao processar os dados"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  erro:
+                    type: string
+                    example: "O campo observação é obrigatório quando o animal é um cão ou gato."
+  /prevencao/leptospirose:
+    get:
+      summary: Lista medidas de prevenção contra Leptospirose
+      description: |
+        Retorna uma lista com medidas ambientais e pessoais recomendadas para prevenir a Leptospirose.
+      tags:
+        - Prevenção
+      responses:
+        200:
+          description: Medidas de prevenção retornadas com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  MEDIDAS_DE_PREVENÇÃO_AMBIENTAS:
+                    type: string
+                    description: Medidas voltadas para o ambiente, como saneamento e controle de roedores
+                    example: "* Controle de roedores.\t* Saneamento básico adequado.\t* Evitar acúmulo de lixo."
+                  MEDIDAS_DE_PREVENÇÃO_PESSOAIS:
+                    type: string
+                    description: Medidas individuais, como uso de EPIs e evitar contato com locais contaminados
+                    example: "* Evitar contato com água ou solo contaminado\t* Uso de luvas e botas"
+        505:
+          description: Erro interno ao acessar dados de prevenção
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  erro:
+                    type: string
+                    example: "Dados de prevenção indisponíveis."
+        
+
+
+components:
+  schemas:
+    Zoonose:
+      type: object
+      properties:
+        nome:
+          type: string
+        sintomas:
+          type: string
+        transmissor:
+          type: string
+        periodo_de_incubacao:
+          type: string
