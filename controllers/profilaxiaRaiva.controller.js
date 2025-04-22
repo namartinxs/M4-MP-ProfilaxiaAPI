@@ -11,5 +11,5 @@ const avaliarAcidenteRaiva = (req, res) => {
 };
 
 export default {
-  avaliarAcidenteRaiva,
+  avaliarAcidenteRaiva
 };
