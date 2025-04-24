@@ -1,4 +1,5 @@
-import zoonoses from "./zoonoses/zoonoses.js";
+import zoonoses from "./utils/zoonoses/zoonoses.js";
+import recomendacao from "./utils/recomendacao.js";
 
 class zoonose {
   constructor(nome) {
@@ -15,6 +16,7 @@ class zoonose {
     }
 
     return {
+      aviso: recomendacao.aviso,
       nome: pesquisa.nome,
       sintomas: pesquisa.sintomas,
       transmissor: pesquisa.transmissor,

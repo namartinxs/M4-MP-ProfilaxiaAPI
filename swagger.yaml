@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: API de Profilaxia e Tratamento de Zoonoses
+  title: API Tu conhece?
   description: API para controle e prevenção de zoonoses, com ênfase em profilaxia, diagnóstico e tratamento.
   version: "1.0.0"
 
@@ -97,10 +97,10 @@ paths:
           schema:
             type: string
             enum:
-              - cao_gato
+              - cao/gato
               - morcego
               - silvestre
-              - domestico_de_interesse_economico
+              - domestico de interesse economico
         - name: tipo_exposicao
           in: query
           required: true
@@ -117,9 +117,9 @@ paths:
           schema:
             type: string
             enum:
-              - passivel_de_observacao
-              - com_sinais_de_raiva
-              - nao_passivel_de_observacao
+              - passivel de observacao
+              - com sinais de raiva
+              - nao passivel de observacao
       responses:
         200:
           description: "Conduta determinada com sucesso"

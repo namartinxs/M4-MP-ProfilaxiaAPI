@@ -1,6 +1,6 @@
 const tipoAnimal = {
-  cao_gato: "cao_gato",
-  domestico_de_interesse_economico: "domestico_de_interesse_economico",
+  cao_gato: "cao/gato",
+  domestico_de_interesse_economico: "domestico de interesse economico",
   silvestre: "silvestre",
   morcego: "morcego",
 };

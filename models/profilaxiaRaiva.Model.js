@@ -1,11 +1,11 @@
-import tipoAnimal from "./enumsRaiva/tipoAnimal.js";
-import tipoExposição from "./enumsRaiva/tipoExposicao.js";
-import condutas from "./enumsRaiva/condutas.js";
-import observacao from "./enumsRaiva/observacao.js";
-
+import tipoAnimal from "./utils/enumsRaiva/tipoAnimal.js";
+import tipoExposição from "./utils/enumsRaiva/tipoExposicao.js";
+import condutas from "./utils/enumsRaiva/condutas.js";
+import observacao from "./utils/enumsRaiva/observacao.js";
+import recomendacao from "./utils/recomendacao.js"
 class ProfilaxiaRaiva {
   constructor({ animal, tipo_exposicao, observacao }) {
-    this.tipo_exposição = tipo_exposicao;
+    this.tipo_exposicao = tipo_exposicao;
     this.animal = animal;
     this.observacao = observacao;
   }
@@ -17,13 +17,15 @@ class ProfilaxiaRaiva {
       };
     }
 
-    if (this.tipo_exposição === tipoExposição.indireto) {
+    if (this.tipo_exposicao === tipoExposição.indireto) {
       if (this.animal == tipoAnimal.morcego) {
         return {
+          aviso: recomendacao.aviso,
           conduta: condutas.soro_e_vacina
         };
       }
       return {
+        aviso: recomendacao.aviso,
         conduta: condutas.indireto
       };
     }
@@ -36,6 +38,7 @@ class ProfilaxiaRaiva {
 
     if (this.animal === tipoAnimal.domestico_de_interesse_economico) {
       return {
+        aviso: recomendacao.aviso,
         conduta: condutas.avaliar_acidente
       };
     }
@@ -43,6 +46,7 @@ class ProfilaxiaRaiva {
     if (this.animal === tipoAnimal.cao_gato) {
       if (this.observacao === observacao.passivel_de_observacao) {
         return {
+          aviso: recomendacao.aviso,
           conduta: `${condutas.profilaxia_e_observacao} ${condutas.avaliar_acidente}`
         };
       }
@@ -52,6 +56,7 @@ class ProfilaxiaRaiva {
         this.observacao === observacao.nao_passivel_de_observacao
       ) {
         return {
+          aviso: recomendacao.aviso,
           conduta: condutas.avaliar_acidente
         };
       }
