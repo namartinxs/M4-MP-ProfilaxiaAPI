@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: API Tu conhece?
+  title: API de Profilaxia de Zoonoses
   description: API para controle e prevenção de zoonoses, com ênfase em profilaxia, diagnóstico e tratamento.
   version: "1.0.0"
 
