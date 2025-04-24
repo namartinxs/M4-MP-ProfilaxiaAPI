@@ -95,18 +95,21 @@ GET /zoonoses/:nome
 1. Clone o repositório:
 ```bash
 git clone https://github.com/seuusuario/profilaxia-api.git
-Instale as dependências:
-
+```
+2. Instale as dependências:
+```bash
 npm i express
 npm i nodemon@1.19.4
 npm i swagger-ui-express
-
-Inicie o servidor:
+```
+3. Inicie o servidor:
+```bash
 npm start
-
-Acesse via Insomnia/Postman:
+```
+4.Acesse via Insomnia/Postman:
+```bash
 http://localhost:3000/
-
+```
 ---
 
 ## 📄 Documentação:
