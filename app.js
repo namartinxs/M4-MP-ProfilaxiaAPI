@@ -2,6 +2,8 @@ import express from "express";
 
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
+import cors from 'cors';
+
 
 //IMPORTA AS ROTAS
 import profilaxiaRaivaRoute from "./routes/profilaxiaRaiva.routes.js";
@@ -13,6 +15,7 @@ const swaggerDocument = YAML.load('./swagger.yaml');
 
 
 const app = express();
+app.use(cors());
 //MIDDLEWARES
 app.use(express.json()); //PERMITE LER JSON NO CORPO DA REQ
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
