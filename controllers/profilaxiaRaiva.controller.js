@@ -1,4 +1,4 @@
-import ProfilaxiaModel from "../models/profilaxiaRaiva.model.js";
+import ProfilaxiaModel from "../models/profilaxiaRaiva.Model.js";
 
 const avaliarAcidenteRaiva = (req, res) => {
   try {
