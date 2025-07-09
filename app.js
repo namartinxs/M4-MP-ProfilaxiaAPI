@@ -4,8 +4,9 @@ import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 
 //IMPORTA AS ROTAS
+routes/zoonoses.routes.js
 import profilaxiaRaivaRoute from "./routes/profilaxiaRaiva.routes.js";
-import zoonosesRoute from "./routes/zoonoses.routes.js";
+import zoonosesRoute from "./routes/zoonoses.Routes.js";
 import prevencaoLeptoRoute from "./routes/prevencaoLepto.routes.js";
 import tratamentoChikungunyaRoute from "./routes/tratamentoChikungunya.routes.js";
 
