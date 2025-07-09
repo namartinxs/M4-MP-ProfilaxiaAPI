@@ -15,11 +15,12 @@ const swaggerDocument = YAML.load('./swagger.yaml');
 
 
 const app = express();
-app.use(cors());
+
 //MIDDLEWARES
 app.use(express.json()); //PERMITE LER JSON NO CORPO DA REQ
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //ROTAS
+app.use(cors());
 app.use("/profilaxiaraiva", profilaxiaRaivaRoute);
 app.use("/zoonoses", zoonosesRoute);
 app.use("/prevencaoLeptospirose", prevencaoLeptoRoute);
